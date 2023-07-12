@@ -10,3 +10,8 @@ sources:
 maintainers:
   - name: bambash
     email: bambash256@gmail.com
+
+dependencies:
+  - name: common
+    repository: oci://registry-1.docker.io/bitnamicharts
+    version: 2.4.0

@@ -40,21 +40,12 @@ spec:
           - image: "{{ $job.image.repository }}:{{ $job.image.tag }}"
             imagePullPolicy: {{ $job.image.imagePullPolicy }}
             name: {{ $job.name }}
-            {{- with $job.env }}
-            env:
-{{ toYaml . | indent 12 }}
-            {{- end }}
-            {{- with $job.envFrom }}
-            envFrom:
-{{ toYaml . | indent 12 }}
-            {{- end }}
+            env: {{- include "common.tplvalues.render" (dict "value" $job.env "context" $) | nindent 12 }}
+            envFrom: {{- include "common.tplvalues.render" (dict "value" $job.envFrom "context" $) | nindent 12 }}
             {{- if $job.command }}
             command: {{ $job.command }}
             {{- end }}
-            {{- with $job.args }}
-            args:
-{{ toYaml . | indent 12 }}
-              {{- end }}
+            args: {{- include "common.tplvalues.render" (dict "value" $job.args "context" $) | nindent 12 }}
             {{- with $job.resources }}
             resources:
 {{ toYaml . | indent 14 }}
@@ -76,10 +67,7 @@ spec:
 {{ toYaml . | indent 12 }}
           {{- end }}
           restartPolicy: {{ $job.restartPolicy }}
-          {{- with $job.volumes }}
-          volumes:
-{{ toYaml . | indent 12 }}
-          {{- end }}
+          volumes: {{- include "common.tplvalues.render" (dict "value" $job.volumes "context" $) | nindent 10 }}
   schedule: {{ $job.schedule | quote }}
   successfulJobsHistoryLimit: {{ $job.successfulJobsHistoryLimit }}
 {{- end }}
