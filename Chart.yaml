@@ -4,12 +4,14 @@ description: A chart for cron jobs
 version: 1.0.1
 keywords:
   - cron
-home: "https://github.com/bambash"
+home: "https://github.com/janvotava/helm-cronjobs"
 sources:
-  - "https://github.com/bambash"
+  - "https://github.com/janvotav/helm-cronjobs.git"
 maintainers:
   - name: bambash
     email: bambash256@gmail.com
+  - name: Jan Votava
+    email: votava@gmail.com
 
 dependencies:
   - name: common
